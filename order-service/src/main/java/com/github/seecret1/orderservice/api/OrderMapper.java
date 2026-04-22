@@ -1,7 +1,7 @@
 package com.github.seecret1.orderservice.api;
 
-import com.github.seecret1.orderservice.dto.CreateOrderRequest;
-import com.github.seecret1.orderservice.dto.OrderCreatedEvent;
+import com.github.seecret1.commondto.order.CreateOrderRequest;
+import com.github.seecret1.commondto.order.OrderCreatedEvent;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingConstants;

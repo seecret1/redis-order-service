@@ -24,19 +24,19 @@ public class Order {
     @Column(name = "id", nullable = false)
     UUID id;
 
-    @Column(name = "user_id")
+    @Column(name = "user_id", nullable = false)
     String userId;
 
-    @Column(name = "product_code")
+    @Column(name = "product_code", nullable = false)
     String productCode;
 
-    @Column(name = "quantity")
+    @Column(name = "quantity", nullable = false)
     int quantity;
 
-    @Column(name = "total_price")
+    @Column(name = "total_price", nullable = false)
     BigDecimal totalPrice;
 
     @CreationTimestamp
-    @Column(name = "timestamp")
+    @Column(name = "timestamp", nullable = false)
     Instant timestamp;
 }

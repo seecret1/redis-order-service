@@ -1,7 +1,7 @@
 package com.github.seecret1.orderservice.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.github.seecret1.orderservice.dto.OrderCreatedEvent;
+import com.github.seecret1.commondto.order.OrderCreatedEvent;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
@@ -22,12 +22,10 @@ public class RedisConfig {
 
         redisTemplate.setKeySerializer(new StringRedisSerializer());
 
-        redisTemplate.setValueSerializer(
-                new Jackson2JsonRedisSerializer<>(
-                        objectMapper,
-                        OrderCreatedEvent.class
-                )
-        );
+        redisTemplate.setValueSerializer(new Jackson2JsonRedisSerializer<>(
+                objectMapper,
+                OrderCreatedEvent.class
+        ));
 
         redisTemplate.afterPropertiesSet();
         return redisTemplate;

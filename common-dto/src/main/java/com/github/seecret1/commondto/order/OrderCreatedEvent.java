@@ -1,4 +1,4 @@
-package com.github.seecret1.orderservice.dto;
+package com.github.seecret1.commondto.order;
 
 import java.math.BigDecimal;
 import java.time.Instant;

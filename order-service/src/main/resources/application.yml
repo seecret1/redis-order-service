@@ -8,12 +8,19 @@ logging:
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: ${DB_URL:jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5433}/${DB_NAME:orders_db}}
+    url: ${DB_URL:jdbc:postgresql://${HOST:localhost}:${DB_PORT:5433}/${DB_NAME:orders_db}}
     username: ${DB_USERNAME:admin}
     password: ${DB_PASSWORD:admin}
+
   jpa:
     hibernate:
       ddl-auto: update
+
+  data:
+    redis:
+      host: ${HOST:localhost}
+      port: ${REDIS_PORT:6379}
+      timeout: 2000ms
 
 app:
   cache:
@@ -28,4 +35,5 @@ app:
 
   redis:
     stream:
+      key: orders
       pollTimeout: 500ms

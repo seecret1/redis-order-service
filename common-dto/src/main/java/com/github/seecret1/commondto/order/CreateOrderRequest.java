@@ -1,4 +1,4 @@
-package com.github.seecret1.orderservice.dto;
+package com.github.seecret1.commondto.order;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

@@ -16,16 +16,16 @@ public class StreamConfig {
     private Duration pollTimeout;
 
     @Bean
-    public StreamMessageListenerContainer<String, MapRecord<String, String, String>> listenerContainer(
-            RedisConnectionFactory factory
+    public StreamMessageListenerContainer<String, MapRecord<String, String, String>> streamMessageListenerContainer(
+            RedisConnectionFactory connectionFactory
     ) {
-        StreamMessageListenerContainer.StreamMessageListenerContainerOptions
-                <String, MapRecord<String, String, String>> options =
+        StreamMessageListenerContainer.
+                StreamMessageListenerContainerOptions<String, MapRecord<String, String, String>> options =
                 StreamMessageListenerContainer.StreamMessageListenerContainerOptions
                         .builder()
                         .pollTimeout(pollTimeout)
                         .build();
 
-        return StreamMessageListenerContainer.create(factory, options);
+        return StreamMessageListenerContainer.create(connectionFactory, options);
     }
 }
