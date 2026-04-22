@@ -1,7 +1,7 @@
 package com.github.seecret1.orderservice.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.github.seecret1.orderservice.entity.OrderCreatedEvent;
+import com.github.seecret1.orderservice.dto.OrderCreatedEvent;
 import org.springframework.cache.CacheManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
