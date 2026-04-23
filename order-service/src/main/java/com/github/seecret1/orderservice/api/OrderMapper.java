@@ -7,7 +7,6 @@ import org.mapstruct.Mapping;
 import org.mapstruct.MappingConstants;
 import org.mapstruct.ReportingPolicy;
 
-import java.util.List;
 
 @Mapper(
         componentModel = MappingConstants.ComponentModel.SPRING,
@@ -27,6 +26,4 @@ public interface OrderMapper {
     @Mapping(target = "quantity", source = "quantity")
     @Mapping(target = "totalPrice", source = "totalPrice")
     OrderCreatedEvent toDto(Order order);
-
-    List<OrderCreatedEvent> toDto(List<Order> orders);
 }

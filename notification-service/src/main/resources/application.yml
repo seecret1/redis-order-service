@@ -20,3 +20,9 @@ app:
     stream:
       key: orders
       pollTimeout: 500ms
+      countRetry: 3
+      retrying: 10m
+      max-batch-size: 50
+      value-limited: 100
+      consumer-group: notification-group
+      consumer-name: notification-service-1

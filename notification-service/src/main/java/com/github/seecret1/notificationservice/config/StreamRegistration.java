@@ -20,8 +20,11 @@ public class StreamRegistration {
     @Value("${app.redis.stream.key}")
     private String STREAM_KEY;
 
-    private static final String CONSUMER_GROUP = "notification-group";
-    private static final String CONSUMER_NAME = "notification-service-1";
+    @Value("${app.redis.stream.consumer-group}")
+    private String CONSUMER_GROUP;
+
+    @Value("${app.redis.stream.consumer-name}")
+    private String CONSUMER_NAME;
 
     @Bean
     public Subscription subscribe(

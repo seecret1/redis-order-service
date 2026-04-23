@@ -21,6 +21,9 @@ repositories {
 dependencies {
     compileOnly("org.mapstruct:mapstruct:1.5.5.Final")
     annotationProcessor("org.mapstruct:mapstruct-processor:1.5.5.Final")
+
+    annotationProcessor("org.projectlombok:lombok-mapstruct-binding:0.2.0")
+
     compileOnly("org.projectlombok:lombok")
     annotationProcessor("org.projectlombok:lombok")
     testCompileOnly("org.projectlombok:lombok")

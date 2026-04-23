@@ -6,10 +6,12 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.connection.stream.MapRecord;
 import org.springframework.data.redis.stream.StreamMessageListenerContainer;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 import java.time.Duration;
 
 @Configuration
+@EnableScheduling
 public class StreamConfig {
 
     @Value("${app.redis.stream.pollTimeout}")

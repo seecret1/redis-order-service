@@ -3,14 +3,12 @@ package com.github.seecret1.orderservice.api;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
-import org.hibernate.annotations.CreationTimestamp;
 
 import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.UUID;
 
-@Getter
-@Setter
+@Data
 @Entity
 @Builder
 @Table(name = "orders")
@@ -36,7 +34,11 @@ public class Order {
     @Column(name = "total_price", nullable = false)
     BigDecimal totalPrice;
 
-    @CreationTimestamp
     @Column(name = "timestamp", nullable = false)
     Instant timestamp;
+
+    @PrePersist
+    public void prePersist() {
+        timestamp = Instant.now();
+    }
 }
