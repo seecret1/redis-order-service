@@ -26,3 +26,5 @@ app:
       value-limited: 100
       consumer-group: notification-group
       consumer-name: notification-service-1
+      retryScheduler:
+        fixedDelay: 5000

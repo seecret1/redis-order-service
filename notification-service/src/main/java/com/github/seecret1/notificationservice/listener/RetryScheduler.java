@@ -31,7 +31,7 @@ public class RetryScheduler {
     private final NotificationStreamListener notificationStreamListener;
 
 
-    @Scheduled(fixedDelayString = "${app.redis.stream.retryScheduler.fixedDelay}")
+    @Scheduled(fixedDelayString = "${app.redis.stream.retryScheduler.fixedDelay:5000}")
     public void retryPendingMessages() {
         PendingMessagesSummary pendingSummary = redisTemplate.opsForStream()
                 .pending(streamKey, CONSUMER_GROUP);
