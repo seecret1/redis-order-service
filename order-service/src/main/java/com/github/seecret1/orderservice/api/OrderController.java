@@ -3,6 +3,7 @@ package com.github.seecret1.orderservice.api;
 import com.github.seecret1.commondto.order.CreateOrderRequest;
 import com.github.seecret1.commondto.order.OrderCreatedEvent;
 import com.github.seecret1.orderservice.service.OrderService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +21,7 @@ public class OrderController {
 
     @PostMapping
     public ResponseEntity<OrderCreatedEvent> saveOrder(
-            @RequestBody CreateOrderRequest request
+            @Valid @RequestBody CreateOrderRequest request
     ) {
         return ResponseEntity
                 .status(HttpStatus.CREATED)

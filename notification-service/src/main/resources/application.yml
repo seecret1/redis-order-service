@@ -2,5 +2,21 @@ spring:
   application:
     name: notification-service
 
+  data:
+    redis:
+      host: ${HOST:localhost}
+      port: ${REDIS_PORT:6379}
+      timeout: 2000ms
+
+logging:
+  level:
+    com.github.seecret1: DEBUG
+
 server:
   port: 8082
+
+app:
+  redis:
+    stream:
+      key: orders
+      pollTimeout: 500ms

@@ -1,6 +1,5 @@
 package com.github.seecret1.orderservice.service;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.seecret1.commondto.order.OrderCreatedEvent;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -19,16 +18,17 @@ public class OrderProducer {
     @Value("${app.redis.stream.key}")
     private String STREAM_KEY;
 
-    private final ObjectMapper objectMapper;
-
     private final StringRedisTemplate stringRedisTemplate;
 
     public void publishOrderCreated(OrderCreatedEvent order) {
         try {
-            String orderJson = objectMapper.writeValueAsString(order);
-
             Map<String, String> eventMap = new HashMap<>();
-            eventMap.put("order", orderJson);
+            eventMap.put("orderId", String.valueOf(order.orderId()));
+            eventMap.put("userId", order.userId());
+            eventMap.put("productCode", order.productCode());
+            eventMap.put("quantity", String.valueOf(order.quantity()));
+            eventMap.put("totalPrice", String.valueOf(order.totalPrice()));
+            eventMap.put("timestamp", String.valueOf(order.timestamp()));
 
             var recordId = stringRedisTemplate.opsForStream().add(STREAM_KEY, eventMap);
 
