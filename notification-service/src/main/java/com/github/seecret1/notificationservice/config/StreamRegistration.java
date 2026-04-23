@@ -13,6 +13,8 @@ import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.stream.StreamMessageListenerContainer;
 import org.springframework.data.redis.stream.Subscription;
 
+import java.util.Map;
+
 @Slf4j
 @Configuration
 public class StreamRegistration {
@@ -34,6 +36,8 @@ public class StreamRegistration {
     ) {
 
         try {
+            // XGROUP requires that the stream key exists.
+            template.opsForStream().add(STREAM_KEY, Map.of("_init", "true"));
             template.opsForStream().createGroup(STREAM_KEY, CONSUMER_GROUP);
             log.info("Consumer group '{}' created for stream '{}'", CONSUMER_GROUP, STREAM_KEY);
         } catch (Exception e) {

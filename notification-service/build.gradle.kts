@@ -31,6 +31,9 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-cache")
 
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
+	testImplementation("org.testcontainers:junit-jupiter:1.20.6")
+	testImplementation("org.testcontainers:testcontainers:1.20.6")
+	testImplementation("org.awaitility:awaitility:4.2.2")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 
 	implementation(project(":common-dto"))

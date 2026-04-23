@@ -33,8 +33,14 @@ public class RetryScheduler {
 
     @Scheduled(fixedDelayString = "${app.redis.stream.retryScheduler.fixedDelay:5000}")
     public void retryPendingMessages() {
-        PendingMessagesSummary pendingSummary = redisTemplate.opsForStream()
-                .pending(streamKey, CONSUMER_GROUP);
+        PendingMessagesSummary pendingSummary;
+        try {
+            pendingSummary = redisTemplate.opsForStream()
+                    .pending(streamKey, CONSUMER_GROUP);
+        } catch (Exception e) {
+            log.debug("Retry scan skipped: stream/group is not ready yet ({})", e.getMessage());
+            return;
+        }
 
         if (pendingSummary == null || pendingSummary.getTotalPendingMessages() == 0) {
             return;
