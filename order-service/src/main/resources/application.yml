@@ -23,16 +23,6 @@ spring:
       timeout: 2000ms
 
 app:
-  cache:
-    cache-names:
-      - orders
-      - order
-    caches:
-      orders:
-        expiry: 5m
-      order:
-        expiry: 10m
-
   redis:
     stream:
       key: orders

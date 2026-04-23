@@ -10,9 +10,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.Instant;
-import java.util.UUID;
-
 @Slf4j
 @Service
 @RequiredArgsConstructor
@@ -22,19 +19,18 @@ public class OrderService {
 
     private final OrderMapper orderMapper;
 
-    private final OrderProducer eventPublisher;
+    private final OrderProducer orderProducer;
 
     @Transactional
     public OrderCreatedEvent createOrder(CreateOrderRequest request) {
         Order order = orderMapper.toEntity(request);
-        order.setId(UUID.randomUUID());
-        order.setTimestamp(Instant.now());
 
-        Order savedOrder = orderRepository.save(order);
-        log.info("Order saved with id: {}", savedOrder.getId());
+        orderRepository.save(order);
+        log.info("Order saved with id: {}", order.getId());
+        log.debug("Saved order: {}", order);
 
-        OrderCreatedEvent event = orderMapper.toDto(savedOrder);
-        eventPublisher.publishOrderCreated(event);
+        OrderCreatedEvent event = orderMapper.toDto(order);
+        orderProducer.publishOrderCreated(event);
 
         return event;
     }
